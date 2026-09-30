@@ -1,0 +1,10 @@
+# Personal fitness data — keep out of the public repo
+*.csv
+*.xlsx
+*.xls
+*.db
+hevy_workouts.json
+hevy_exercise_templates.json
+
+# Secrets (API keys)
+.env
