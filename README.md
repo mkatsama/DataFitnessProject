@@ -27,7 +27,7 @@ The loading scripts can be run again without creating duplicates. Existing rows 
 
 ```mermaid
 erDiagram
-    whoop_daily ||--o{ hevy_workouts : "day of"
+    whoop_daily |o--o{ hevy_workouts : "day of"
     whoop_daily ||--o{ journal_flags : has
     hevy_workouts ||--o{ workout_sets : contains
     exercises ||--o{ workout_sets : "performed as"
@@ -79,7 +79,7 @@ erDiagram
     }
 ```
 
-The diagram shows the main columns only. `whoop_daily` has 22 metrics in total; the full definitions are in [db/schema.sql](db/schema.sql).
+The diagram shows the main columns only. `whoop_daily` has 21 metrics in total; the full definitions are in [db/schema.sql](db/schema.sql).
 
 | Table | One row is | Source |
 |---|---|---|
