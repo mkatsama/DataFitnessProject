@@ -37,13 +37,31 @@ erDiagram
         INTEGER whoop_daily_id PK
         DATE whoop_date UK
         REAL recovery_score
+        REAL resting_hr
         REAL hrv_ms
         REAL daily_strain
         REAL sleep_performance_pct
+        REAL respiratory_rate
+        REAL asleep_duration_min
+        REAL light_sleep_min
+        REAL deep_sleep_min
+        REAL rem_sleep_min
+        REAL awake_min
+        REAL sleep_need_min
+        REAL sleep_debt_min
+        REAL sleep_efficiency_pct
+        REAL sleep_consistency_pct
+        REAL blood_oxygen_pct
+        REAL skin_temp_c
+        REAL energy_burned_cal
+        REAL max_hr
+        REAL avg_hr
+        REAL in_bed_duration_min
     }
     hevy_workouts {
         TEXT workout_id PK
         TEXT title
+        TEXT routine_id
         TIMESTAMP start_time_utc
         TIMESTAMP end_time_utc
         INTEGER whoop_daily_id FK
@@ -53,6 +71,7 @@ erDiagram
         TEXT workout_id FK
         TEXT exercise_template_id FK
         INTEGER set_index
+        TEXT set_type
         REAL weight_kg
         INTEGER reps
         REAL rpe
@@ -60,7 +79,9 @@ erDiagram
     exercises {
         TEXT exercise_template_id PK
         TEXT title
+        TEXT exercise_type
         TEXT primary_muscle_group
+        TEXT equipment
         BOOLEAN is_custom
         BOOLEAN is_quad_relevant
     }
@@ -68,18 +89,21 @@ erDiagram
         INTEGER activity_id PK
         TEXT activity_name
         TIMESTAMP start_time_local
+        TIMESTAMP end_time_local
         REAL activity_strain
-        TEXT matched_workout_id FK
+        REAL avg_hr
+        REAL max_hr
+        TEXT matched_workout_id FK, UK
     }
     journal_flags {
         INTEGER journal_flag_id PK
-        INTEGER whoop_daily_id FK
-        TEXT question_text
+        INTEGER whoop_daily_id FK "unique together with question_text"
+        TEXT question_text "unique together with whoop_daily_id"
         BOOLEAN answered_yes
     }
 ```
 
-The diagram shows the main columns only. `whoop_daily` has 21 metrics in total; the full definitions are in [db/schema.sql](db/schema.sql).
+PK = primary key, FK = foreign key, UK = unique key (no two rows can have the same value). The SQL itself is in [db/schema.sql](db/schema.sql).
 
 | Table | One row is | Source |
 |---|---|---|
