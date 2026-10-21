@@ -121,6 +121,34 @@ A few choices I made in the design:
 - **`whoop_activities.matched_workout_id`** is unique, so one Hevy workout can only be matched to one Whoop activity. If two Whoop activities are close to the same workout, the closer one wins.
 - **`is_quad_relevant`** flags exercises whose primary muscle group is quadriceps.
 
+## Dashboard (in progress)
+
+The Tableau workbook is in [TabWorkbooks/](TabWorkbooks/). The dashboard isn't finished yet, but these are the visualizations built so far.
+
+### Recovery score over time
+
+![Recovery score trend](TabWorkbooks/screenshots/recovery_score_trend.png)
+
+My Whoop recovery score from January to September 2026, drawn over Whoop's green, yellow and red recovery zones. The dotted line is my average for the period, 68.6.
+
+### Weekly training volume by muscle group
+
+![Weekly volume by muscle group](TabWorkbooks/screenshots/weekly_volume_by_muscle_group.png)
+
+Total kg lifted per week from Hevy, split into upper body, lower body and core/cardio. The gap from mid-August to early September is a break from the gym.
+
+### Previous day's strain vs recovery
+
+![Strain vs recovery](TabWorkbooks/screenshots/strain_vs_recovery.png)
+
+Each dot is one day: the Whoop strain from the day before against that morning's recovery score, coloured by recovery zone. The trend line slopes down only slightly, so a hard day doesn't reliably mean a low recovery the next morning.
+
+### Resting heart rate vs HRV
+
+![Resting heart rate vs HRV](TabWorkbooks/screenshots/resting_hr_vs_hrv.png)
+
+Each dot is one day. Days with a lower resting heart rate tend to have a higher HRV, which shows up as a clear downward trend.
+
 ## About the data
 
 The repository only contains code. My own data (the database, the JSON and CSV files, and the Excel export) is left out through `.gitignore`.
